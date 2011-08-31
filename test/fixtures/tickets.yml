@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  summary: MyString
+  description: MyText
+  priority: 1
+  difficulty: 1
+  attended_by: MyString
+  requested_by: MyString
+  status: false
+
+two:
+  summary: MyString
+  description: MyText
+  priority: 1
+  difficulty: 1
+  attended_by: MyString
+  requested_by: MyString
+  status: false

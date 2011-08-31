@@ -1,0 +1,38 @@
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<h1>Listagem de Tickets</h1>
+
+<p align="right"><%= link_to 'Incluir novo chamado', new_ticket_path %></rigth></p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Resumo</th>
+    <th>Descrição</th>
+    <th>Prioridade</th>
+    <th>Dificuldade</th>
+    <th>Attended by</th>
+    <th>Requested by</th>
+    <th>Status</th>
+    <th>Opções</th>
+    <th></th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.id %></td>
+    <td><%= ticket.summary %></td>
+    <td><%= ticket.description %></td>
+    <td><%= priority(ticket.priority) %></td>
+    <td><%= ticket.difficulty %></td>
+    <td><%= ticket.attended_by %></td>
+    <td><%= ticket.requested_by %></td>
+    <td><%= ticket.status %></td>
+    <td><%= link_to 'Show', ticket %>
+    <%= link_to 'Edit', edit_ticket_path(ticket) %>
+    <%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
