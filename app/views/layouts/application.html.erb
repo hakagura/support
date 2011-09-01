@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>MonitorTiming</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
-<div id="header">
-
-
-  <% unless user_signed_in? -%>
-    <%= link_to "Sign in", new_user_session_path %>
-  <% else -%>
-  <div id="menu">
-    <ul>
-      <li><a href="/">Principal</li>
-      <li><a href="/tickets">Tickets</li>
-      <li><a href="/sectors">Setores</li>
-      <li><a href="/subjects">Assuntos</li>
-      <li><a href="/users">Usuários</li>
-    </ul>
-  </div>
-    <%= current_user.email %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% end -%>
-</div>
-
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Tickets</title>
+    <%= stylesheet_link_tag 'jquery-ui', 'active_admin', 'form', 'override'%>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h1 id="site_title">Tickets</h1>
+        <ul id="tabs">
+          <li <%= raw 'class="current"' if controller_name == 'tickets' %>><%= link_to t('models.ticket'), tickets_path %></li>
+          <li <%= raw 'class="current"' if controller_name == 'sectors' %>><%= link_to t('models.sector'), sectors_path %></li>
+          <li <%= raw 'class="current"' if controller_name == 'subject' %>><%= link_to t('models.subject'), subjects_path %></li>
+          <li <%= raw 'class="current"' if controller_name == 'calls' %>><%= link_to t('models.call'), calls_path %></li>
+          <li <%= raw 'class="current"' if controller_name == 'users'%>><%= link_to t('models.user'), users_path%></li>
+        </ul>
+      </div>
+      <div id="title_bar">
+        <h2 id="page_title">
+          <%= t '.dashboard' %> &rsaquo; <%= t 'models.'+controller_name.singularize %>
+        </h2>
+        <div class="action_items">
+          <%= yield :toolbar %>
+        </div>
+      </div>
+      <div id="content" class="<%= content_for?(:sidebar) ? 'with_sidebar' : 'without_sidebar' %>">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+            <%= yield %>
+          </div>
+        </div>
+        <div id="sidebar">
+          <div class="sidebar_section panel" id="filters_sidebar_section">
+            <%= yield :sidebar %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+    </div>
+    <%= javascript_include_tag 'jquery.min', 'jquery-ui.min', 'jquery_ujs', :cache => 'cache/application' %>
+    <%= csrf_meta_tag %>
+  </body>
 </html>
