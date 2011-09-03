@@ -12,27 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :resumo %></br>
+    <%= f.label :subject_id, "Assunto: " %><br />
+    <%= f.select :subject_id, Subject.all.map {|s| [s.name, s.id]}, {:include_blank => "Selecione o assunto"} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :summary, "Resumo:" %></br>
     <%= f.text_field :summary %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description, "Descrição" %><br />
     <%= f.text_area :description, :cols => 80, :rows => 10 %>
   </div>
 
   <div class="field">
-    <%= f.label :requested_by %><br />
+    <%= f.label :requested_by, "Solicitado por:" %><br />
     <%= f.text_field :requested_by %>
   </div>
 
   <div class="field">
-    <%= f.label :priority %><br />
-		<%= f.radio_button :priority, 0%>Urgente!<br/>
-		<%= f.radio_button :priority, 1%>Alta<br/>
-		<%= f.radio_button :priority, 2%>Media<br/>
-		<%= f.radio_button :priority, 3%>Baixa
+    <%= f.label :priority, "Prioridade: " %><br />
+		<%= f.radio_button :priority, 0 %>Urgente!<br/>
+		<%= f.radio_button :priority, 1 %>Alta<br/>
+		<%= f.radio_button :priority, 2 %>Media<br/>
+		<%= f.radio_button :priority, 3 %>Baixa
   </div>
   <div class="actions">
-	<%= f.submit "Gravar" %> 
+	<%= f.submit "Gravar" %>
   </div>
 <% end %>
+
