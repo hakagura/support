@@ -26,13 +26,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :priority %><br />
+    <%= f.label :priority %><br /><br />
 		<%= f.radio_button :priority, 0%>Urgente!<br/>
 		<%= f.radio_button :priority, 1%>Alta<br/>
 		<%= f.radio_button :priority, 2%>Media<br/>
 		<%= f.radio_button :priority, 3%>Baixa
   </div>
-  <div class="actions">
+  <br><div class="actions">
 	<%= f.submit "Gravar" %> 
   </div>
 <% end %>
