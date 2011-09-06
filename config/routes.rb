@@ -1,5 +1,7 @@
 MonitorTiming::Application.routes.draw do
-  resources :tickets
+
+  resources :tickets do
+		resources :calls end
 
   resources :subjects
 

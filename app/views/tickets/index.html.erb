@@ -1,7 +1,8 @@
-<h1>Listing tickets</h1>
+<h1>Chamados</h1>
 
 <table>
   <tr>
+    <th>Chamada</th>
     <th>Summary</th>
     <th>Description</th>
     <th>Priority</th>
@@ -16,6 +17,7 @@
 
 <% @tickets.each do |ticket| %>
   <tr>
+    <td><%= link_to ticket.id, ticket %></td>
     <td><%= ticket.summary %></td>
     <td><%= ticket.description %></td>
     <td><%= ticket.priority %></td>

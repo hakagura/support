@@ -40,17 +40,21 @@ class CallsController < ApplicationController
   # POST /calls
   # POST /calls.xml
   def create
-    @call = Call.new(params[:call])
 
-    respond_to do |format|
-      if @call.save
-        format.html { redirect_to(@call, :notice => 'Call was successfully created.') }
-        format.xml  { render :xml => @call, :status => :created, :location => @call }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @call.errors, :status => :unprocessable_entity }
-      end
-    end
+    @ticket = Ticket.find(params[:ticket_id])
+    @call = @ticket.calls.create(params[:call])
+    redirect_to ticket_path(@ticket)
+
+
+#    respond_to do |format|
+#      if @call.save
+#        format.html { redirect_to(@call, :notice => 'Call was successfully created.') }
+#        format.xml  { render :xml => @call, :status => :created, :location => @call }
+#      else
+#        format.html { render :action => "new" }
+#        format.xml  { render :xml => @call.errors, :status => :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /calls/1

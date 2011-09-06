@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
   # GET /tickets/1.xml
   def show
     @ticket = Ticket.find(params[:id])
-
+    @call = Call.new
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @ticket }
@@ -81,4 +81,6 @@ class TicketsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
 end

@@ -35,6 +35,34 @@
   <%= @ticket.status %>
 </p>
 
+<% @ticket.calls.each do |call| %>
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+  Id<br />
+	<%= call.id %>
+  <br>Answer<br />
+	<%= call.answer %><br/>
+<% end %>
+
+
+
+
+
+
+
+
+
+<%= form_for([@ticket, @ticket.calls.build]) do |f| %>
+
+  <div class="field">
+    <%= f.label :answer %><br />
+    <%= f.text_area :answer %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<br><br><%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>
