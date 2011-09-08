@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905123158) do
+ActiveRecord::Schema.define(:version => 20110908193207) do
 
   create_table "calls", :force => true do |t|
     t.text     "answer"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20110905123158) do
     t.integer  "difficulty"
     t.string   "attended_by"
     t.string   "requested_by"
-    t.boolean  "status"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject_id"

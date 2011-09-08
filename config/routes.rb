@@ -1,5 +1,8 @@
 MonitorTiming::Application.routes.draw do
 
+
+	get "tickets/:id/answer" => "tickets#answer"
+
   resources :tickets do
 		resources :calls end
 

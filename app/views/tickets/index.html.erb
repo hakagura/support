@@ -1,15 +1,27 @@
 <h1>Chamados</h1>
 
+
+<%= form_tag tickets_path, :method => 'get' do%>
+	<%= hidden_field_tag :direction, params[:direction]%>
+	<%= hidden_field_tag :sort, params[:sort]%>
+	<p>
+		<%= text_field_tag :search, params[:search]%>
+		<%= submit_tag "Search", :summary => nil%>
+	</p>
+<%end%>
+
+<br>
 <table>
   <tr>
-    <th>Chamada</th>
-    <th>Summary</th>
-    <th>Description</th>
-    <th>Priority</th>
-    <th>Difficulty</th>
-    <th>Attended by</th>
-    <th>Requested by</th>
-    <th>Status</th>
+    <th><%=sortable "tickets.id" %></th>
+    <th><%=sortable "summary" %></th>
+    <th><%=sortable "description" %></th>
+    <th><%=sortable "priority" %></th>
+    <th><%=sortable "difficulty" %></th>
+    <th><%=sortable "attended_by" %></th>
+    <th><%=sortable "requested_by" %></th>
+    <th><%=sortable "status" %></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,11 +32,12 @@
     <td><%= link_to ticket.id, ticket %></td>
     <td><%= ticket.summary %></td>
     <td><%= ticket.description %></td>
-    <td><%= ticket.priority %></td>
+    <td><%= priority(ticket.priority) %></td>
     <td><%= ticket.difficulty %></td>
     <td><%= ticket.attended_by %></td>
     <td><%= ticket.requested_by %></td>
-    <td><%= ticket.status %></td>
+    <td><%= status(ticket.status) %></td>
+		<td><%= link_to 'Atender', :action => "answer", :id => ticket %></td>
     <td><%= link_to 'Show', ticket %></td>
     <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
     <td><%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -16,7 +16,6 @@
     <th>Requested by</th>
     <th>Status</th>
     <th>Opções</th>
-    <th></th>
   </tr>
 
 <% @tickets.each do |ticket| %>
@@ -28,10 +27,12 @@
     <td><%= ticket.difficulty %></td>
     <td><%= ticket.attended_by %></td>
     <td><%= ticket.requested_by %></td>
-    <td><%= ticket.status %></td>
-    <td><%= link_to 'Show', ticket %>
-    <%= link_to 'Edit', edit_ticket_path(ticket) %>
-    <%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= status(ticket.status) %></td>
+    <td>
+		<%= link_to 'Alterar Atendimento', ticket %>
+			<%= link_to 'Show', ticket %>
+  	  <%= link_to 'Edit', edit_ticket_path(ticket) %>
+	    <%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

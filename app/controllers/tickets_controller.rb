@@ -1,8 +1,11 @@
 class TicketsController < ApplicationController
+
+	helper_method :sort_column, :sort_direction	
+
   # GET /tickets
   # GET /tickets.xml
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.search(params[:search]).order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,6 +84,23 @@ class TicketsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+	def answer
+    @ticket = Ticket.find(params[:id])
+		@ticket.update_attributes(:status => 1)
+		render :action => "answer"
+	end
+
+
+	private
+
+	def	sort_column
+			params[:sort] || "tickets.id"
+	end
+
+	def	sort_direction
+			params[:direction] || "asc"
+	end
 
 
 end

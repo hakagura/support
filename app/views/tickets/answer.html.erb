@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Summary:</b>
+  <%= @ticket.summary %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @ticket.description %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @ticket.priority %>
+</p>
+
+<p>
+  <b>Difficulty:</b>
+  <%= @ticket.difficulty %>
+</p>
+
+<p>
+  <b>Attended by:</b>
+  <%= @ticket.attended_by %>
+</p>
+
+<p>
+  <b>Requested by:</b>
+  <%= @ticket.requested_by %>
+</p>
+
+<p>
+  <b>Status:</b>
+    <%= status(@ticket.status) %>
+</p>
+
+<% @ticket.calls.each do |call| %>
+
+  Id<br />
+	<%= call.id %>
+  <br>Answer<br />
+	<%= call.answer %><br/>
+<% end %>
+
+
+<%= form_for(@ticket) do |f| %>
+
+<div class="field">
+    <%= f.label :difficulty, "Dificuldade: " %><br /><br/>
+		<%= f.radio_button :difficulty, 0 %>0<br/>
+		<%= f.radio_button :difficulty, 1 %>1<br/>
+		<%= f.radio_button :difficulty, 2 %>2<br/>
+		<%= f.radio_button :difficulty, 3 %>3<br/>
+		<%= f.radio_button :difficulty, 4 %>4<br/>
+		<%= f.radio_button :difficulty, 5 %>5
+  </div>
+
+  <div class="actions">
+	<br><%= f.submit "Gravar" %>
+
+  </div>
+<%end%>
+
+
+
+
+
+
+
+
+<br><br><%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
